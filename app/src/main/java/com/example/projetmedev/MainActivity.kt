@@ -34,10 +34,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Title(modifier= Modifier
-                        .background(Color.Blue.copy(alpha = 0.5f))
-                        .padding(start = 16.dp, end = 166.dp, top = 16.dp, bottom = 16.dp))
-                    CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp))
+                    Column{
+                        Title(modifier= Modifier
+                            .background(Color.Blue.copy(alpha = 0.5f))
+                            .padding(start = 16.dp, end = 166.dp, top = 16.dp, bottom = 16.dp))
+                        CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp))
+                    }
+
                 }
             }
         }
