@@ -68,25 +68,28 @@ fun CompteCreation(modifier: Modifier = Modifier) {
 
 @Composable
 fun Title(modifier: Modifier = Modifier) {
-    Box {
+
         Text(
             text = "Lien et bien-être en milieu hospitalier",
             modifier = modifier,
             style = TextStyle(fontWeight = FontWeight.Bold),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
-    }
+
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     ProjetMedevTheme {
-        Column(verticalArrangement = Arrangement.Center) {
+        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Title(modifier= Modifier
                 .background(Color.Blue.copy(alpha = 0.5f))
-                .padding(start = 16.dp, end = 166.dp, top = 16.dp, bottom = 16.dp))
-            CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp))
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth())
+            CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
         }
 
     }
