@@ -11,7 +11,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 val Bleue = Color(0xDEE9F5)
 object ColorPalette {
-    val Bleue = Color(0xDEE9F5)
+    val Bleue = Color(0xDE,0xe9,0xF5)
     val Red = Color(0xFF0000)
     // Ajoutez d'autres couleurs ici si nécessaire
 }

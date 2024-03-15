@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.projetmedev.ui.theme.ColorPalette
 import com.example.projetmedev.ui.theme.ProjetMedevTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,14 +32,19 @@ class MainActivity : ComponentActivity() {
             ProjetMedevTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column{
+                    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                         Title(modifier= Modifier
-                            .background(Color.Blue.copy(alpha = 0.5f))
-                            .padding(start = 16.dp, end = 166.dp, top = 16.dp, bottom = 16.dp))
-                        CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp))
+                            .background(ColorPalette.Bleue)
+                            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally)
+                            .fillMaxWidth())
+                        CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
+                        AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
                     }
 
                 }
@@ -67,6 +73,16 @@ fun CompteCreation(modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun AdresseMail(modifier: Modifier = Modifier) {
+    Text(
+        text = "Votre adresse mail",
+        modifier = modifier,
+        style = TextStyle(fontWeight = FontWeight.Bold),
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
 fun Title(modifier: Modifier = Modifier) {
 
         Text(
@@ -84,11 +100,13 @@ fun GreetingPreview() {
     ProjetMedevTheme {
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Title(modifier= Modifier
-                .background(Color.Blue.copy(alpha = 0.5f))
+                .background(ColorPalette.Bleue)
                 .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth())
             CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
+            AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
         }
 
