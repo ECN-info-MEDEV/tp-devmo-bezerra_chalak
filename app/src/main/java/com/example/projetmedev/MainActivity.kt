@@ -14,6 +14,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -101,13 +102,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun CompteCreation(modifier: Modifier = Modifier) {
-        Text(
-            text = "Créer un compte",
-            modifier = modifier,
-            color=Color.Yellow,
-            style = TextStyle(fontWeight = FontWeight.Bold),
-            textAlign = TextAlign.Center
-        )
+    Text(
+        text = "Créer un compte",
+        modifier = modifier,
+        color=ColorPalette.Jaune,
+        style = TextStyle(fontWeight = FontWeight.Bold),
+        textAlign = TextAlign.Center
+    )
 }
 
 @Composable
@@ -131,10 +132,12 @@ fun EmailTextField(
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         label = { Text(text= "Digitez votre mail") },
-        colors = TextFieldDefaults.colors(
+        colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
             disabledContainerColor = MaterialTheme.colorScheme.surface,
+            focusedBorderColor = ColorPalette.Jaune,
+            unfocusedBorderColor = ColorPalette.Jaune,
         )
     )
 }
@@ -151,11 +154,16 @@ fun PasswordTextField(
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         label = { Text(text= "Digitez votre mot de passe") },
-        colors = TextFieldDefaults.colors(
+        colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
             disabledContainerColor = MaterialTheme.colorScheme.surface,
+            focusedBorderColor = ColorPalette.Jaune,
+            unfocusedBorderColor = ColorPalette.Jaune,
         ),
+
+
+
         visualTransformation = PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password)
     )
@@ -206,12 +214,12 @@ fun Conditions(modifier: Modifier = Modifier) {
 @Composable
 fun Title(modifier: Modifier = Modifier) {
 
-        Text(
-            text = "Lien et bien-être en milieu hospitalier",
-            modifier = modifier,
-            style = TextStyle(fontWeight = FontWeight.Bold),
-            textAlign = TextAlign.Center,
-        )
+    Text(
+        text = "Lien et bien-être en milieu hospitalier",
+        modifier = modifier,
+        style = TextStyle(fontWeight = FontWeight.Bold),
+        textAlign = TextAlign.Center,
+    )
 
 }
 
@@ -245,8 +253,8 @@ fun GreetingPreview() {
                 password = emailInput,
                 onValueChange = { emailInput = it},
                 modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
+                    .padding(top = 16.dp, bottom = 16.dp)
+                    .align(Alignment.CenterHorizontally))
             Conditions(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
