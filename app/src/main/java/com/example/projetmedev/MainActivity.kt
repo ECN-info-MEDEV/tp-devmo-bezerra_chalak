@@ -3,6 +3,7 @@ package com.example.projetmedev
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,6 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -58,6 +61,9 @@ class MainActivity : ComponentActivity() {
                     var emailInput by remember { mutableStateOf("") }
                     var passwordInput by remember { mutableStateOf("") }
                     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                        Logo(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
                         Title(modifier= Modifier
                             .background(ColorPalette.Bleue)
                             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
@@ -94,6 +100,16 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+@Composable
+fun Logo(modifier: Modifier = Modifier){
+    Image(
+        modifier=modifier,
+        painter = painterResource(id = R.drawable.logo),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        alpha = 0.5F
+    )
 }
 
 @Composable
@@ -245,6 +261,9 @@ fun GreetingPreview() {
     ProjetMedevTheme {
         var emailInput by remember { mutableStateOf("") }
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Logo(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
             Title(modifier= Modifier
                 .background(ColorPalette.Bleue)
                 .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
