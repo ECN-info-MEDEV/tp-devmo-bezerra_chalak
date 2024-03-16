@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -112,6 +113,7 @@ fun EmailTextField(modifier: Modifier = Modifier) {
         onValueChange = { },
         singleLine = true,
         shape = MaterialTheme.shapes.large,
+        label = { Text(text= "Digitez votre mail") },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
@@ -127,6 +129,7 @@ fun PasswordTextField(modifier: Modifier = Modifier) {
         onValueChange = { },
         singleLine = true,
         shape = MaterialTheme.shapes.large,
+        label = { Text(text= "Digitez votre mot de passe") },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
