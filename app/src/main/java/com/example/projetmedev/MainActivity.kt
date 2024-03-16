@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -79,6 +80,9 @@ class MainActivity : ComponentActivity() {
                             modifier= Modifier
                                 .padding(top = 16.dp, bottom = 16.dp)
                                 .align(Alignment.CenterHorizontally))
+                        Conditions(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
                     }
 
                 }
@@ -185,7 +189,7 @@ fun Conditions(modifier: Modifier = Modifier) {
         Checkbox(
             checked = checked,
             onCheckedChange = { checked = it },
-           // colors = CheckboxDefaults.colors(MaterialTheme.colors.primary)
+            colors = CheckboxDefaults.colors(MaterialTheme.colorScheme.primary)
         )
         Text(
             text = "J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité",
@@ -243,7 +247,9 @@ fun GreetingPreview() {
                 modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
-            Conditions()
+            Conditions(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
         }
 
     }
