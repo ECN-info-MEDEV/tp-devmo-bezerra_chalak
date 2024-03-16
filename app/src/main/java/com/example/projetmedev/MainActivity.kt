@@ -7,13 +7,20 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,11 +50,14 @@ class MainActivity : ComponentActivity() {
                             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally)
                             .fillMaxWidth())
-                        CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                        CompteCreation(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
-                        AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                        AdresseMail(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
-                        MotDePass(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                        MotDePass(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
                     }
 
@@ -107,6 +117,27 @@ fun MotDePass(modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun Conditions(modifier: Modifier = Modifier) {
+    var checked by remember { mutableStateOf(false) }
+    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
+        Checkbox(
+            checked = checked,
+            onCheckedChange = { checked = it },
+           // colors = CheckboxDefaults.colors(MaterialTheme.colors.primary)
+        )
+        Text(
+            text = "J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité",
+            modifier = modifier,
+            textAlign = TextAlign.Center,
+            style=TextStyle(fontSize = TextUnit(14f, TextUnitType.Sp))
+        )
+
+
+    }
+
+}
+
+@Composable
 fun Title(modifier: Modifier = Modifier) {
 
         Text(
@@ -128,12 +159,16 @@ fun GreetingPreview() {
                 .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth())
-            CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+            CompteCreation(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
-            AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+            AdresseMail(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
-            MotDePass(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+            MotDePass(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
+            Conditions()
         }
 
     }
