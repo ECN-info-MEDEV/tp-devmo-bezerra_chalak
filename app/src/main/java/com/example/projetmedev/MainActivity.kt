@@ -21,6 +21,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.example.projetmedev.ui.theme.ColorPalette
 import com.example.projetmedev.ui.theme.ProjetMedevTheme
@@ -44,6 +46,8 @@ class MainActivity : ComponentActivity() {
                         CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
                         AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
+                        MotDePass(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
                     }
 
@@ -83,6 +87,26 @@ fun AdresseMail(modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun MotDePass(modifier: Modifier = Modifier) {
+    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
+        Text(
+            text = "Créez un mot de pass",
+            modifier = modifier,
+            style = TextStyle(fontWeight = FontWeight.Bold),
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = "(Le mot de pass doit contenir au minimum 8 caractères)",
+            modifier = modifier,
+            textAlign = TextAlign.Center,
+            style=TextStyle(fontSize = TextUnit(12f, TextUnitType.Sp))
+        )
+
+    }
+
+}
+
+@Composable
 fun Title(modifier: Modifier = Modifier) {
 
         Text(
@@ -107,6 +131,8 @@ fun GreetingPreview() {
             CompteCreation(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
             AdresseMail(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
+            MotDePass(modifier=Modifier.padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
         }
 
