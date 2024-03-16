@@ -5,14 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -29,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import com.example.projetmedev.ui.theme.ColorPalette
 import com.example.projetmedev.ui.theme.ProjetMedevTheme
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    var emailInput by remember { mutableStateOf("") }
+                    var passwordInput by remember { mutableStateOf("") }
                     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                         Title(modifier= Modifier
                             .background(ColorPalette.Bleue)
@@ -60,15 +64,21 @@ class MainActivity : ComponentActivity() {
                             .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
 
-                        EmailTextField(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
+                        EmailTextField(
+                            email = emailInput,
+                            onValueChange = { emailInput = it},
+                            modifier= Modifier
+                                .padding(top = 16.dp, bottom = 16.dp)
+                                .align(Alignment.CenterHorizontally))
                         MotDePass(modifier= Modifier
                             .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
-                        PasswordTextField(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
+                        PasswordTextField(
+                            password = passwordInput,
+                            onValueChange = { passwordInput = it},
+                            modifier= Modifier
+                                .padding(top = 16.dp, bottom = 16.dp)
+                                .align(Alignment.CenterHorizontally))
                     }
 
                 }
@@ -107,10 +117,13 @@ fun AdresseMail(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EmailTextField(modifier: Modifier = Modifier) {
+fun EmailTextField(
+    email: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier) {
     OutlinedTextField(
-        value = "",
-        onValueChange = { },
+        value = email,
+        onValueChange = onValueChange,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         label = { Text(text= "Digitez votre mail") },
@@ -123,10 +136,14 @@ fun EmailTextField(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun PasswordTextField(modifier: Modifier = Modifier) {
+fun PasswordTextField(
+    password: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier) {
+
     OutlinedTextField(
-        value = "",
-        onValueChange = { },
+        value = password,
+        onValueChange = onValueChange,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         label = { Text(text= "Digitez votre mot de passe") },
@@ -134,7 +151,9 @@ fun PasswordTextField(modifier: Modifier = Modifier) {
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
             disabledContainerColor = MaterialTheme.colorScheme.surface,
-        )
+        ),
+        visualTransformation = PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password)
     )
 }
 
@@ -196,6 +215,7 @@ fun Title(modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ProjetMedevTheme {
+        var emailInput by remember { mutableStateOf("") }
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Title(modifier= Modifier
                 .background(ColorPalette.Bleue)
@@ -208,13 +228,19 @@ fun GreetingPreview() {
             AdresseMail(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
-            EmailTextField(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
+            EmailTextField(
+                email = emailInput,
+                onValueChange = { emailInput = it},
+                modifier= Modifier
+                    .padding(top = 16.dp, bottom = 16.dp)
+                    .align(Alignment.CenterHorizontally))
             MotDePass(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
-            PasswordTextField(modifier= Modifier
+            PasswordTextField(
+                password = emailInput,
+                onValueChange = { emailInput = it},
+                modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
             Conditions()
