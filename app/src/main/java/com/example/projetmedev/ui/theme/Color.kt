@@ -12,7 +12,7 @@ val Pink40 = Color(0xFF7D5260)
 val Bleue = Color(0xDEE9F5)
 object ColorPalette {
     val Bleue = Color(0xDE,0xe9,0xF5)
-    val Jaune = Color(240, 232, 10)
+    val Jaune = Color(240, 232, 50)
 
     // Ajoutez d'autres couleurs ici si nécessaire
 }

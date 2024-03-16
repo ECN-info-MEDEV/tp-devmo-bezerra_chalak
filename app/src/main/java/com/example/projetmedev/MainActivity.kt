@@ -10,9 +10,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -36,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.projetmedev.ui.theme.ColorPalette
 import com.example.projetmedev.ui.theme.ProjetMedevTheme
 
@@ -161,14 +165,10 @@ fun PasswordTextField(
             focusedBorderColor = ColorPalette.Jaune,
             unfocusedBorderColor = ColorPalette.Jaune,
         ),
-
-
-
         visualTransformation = PasswordVisualTransformation(),
         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password)
     )
 }
-
 
 @Composable
 fun MotDePass(modifier: Modifier = Modifier) {
@@ -210,6 +210,22 @@ fun Conditions(modifier: Modifier = Modifier) {
     }
 
 }
+
+
+@Composable
+fun CreerCompteButton (modifier: Modifier = Modifier){
+    Button(
+        colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
+        onClick = { }
+    ) {
+        Text(
+            text = "Creer Compte",
+            fontSize = 18.sp
+        )
+    }
+
+}
+
 
 @Composable
 fun Title(modifier: Modifier = Modifier) {
@@ -256,6 +272,9 @@ fun GreetingPreview() {
                     .padding(top = 16.dp, bottom = 16.dp)
                     .align(Alignment.CenterHorizontally))
             Conditions(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
+            CreerCompteButton(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
         }
