@@ -14,8 +14,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,7 +58,14 @@ class MainActivity : ComponentActivity() {
                         AdresseMail(modifier= Modifier
                             .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
+
+                        EmailTextField(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
                         MotDePass(modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally))
+                        PasswordTextField(modifier= Modifier
                             .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
                     }
@@ -95,6 +104,37 @@ fun AdresseMail(modifier: Modifier = Modifier) {
         textAlign = TextAlign.Center
     )
 }
+
+@Composable
+fun EmailTextField(modifier: Modifier = Modifier) {
+    OutlinedTextField(
+        value = "",
+        onValueChange = { },
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surface,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+            disabledContainerColor = MaterialTheme.colorScheme.surface,
+        )
+    )
+}
+
+@Composable
+fun PasswordTextField(modifier: Modifier = Modifier) {
+    OutlinedTextField(
+        value = "",
+        onValueChange = { },
+        singleLine = true,
+        shape = MaterialTheme.shapes.large,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surface,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+            disabledContainerColor = MaterialTheme.colorScheme.surface,
+        )
+    )
+}
+
 
 @Composable
 fun MotDePass(modifier: Modifier = Modifier) {
@@ -165,7 +205,13 @@ fun GreetingPreview() {
             AdresseMail(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
+            EmailTextField(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
             MotDePass(modifier= Modifier
+                .padding(top = 16.dp, bottom = 16.dp)
+                .align(Alignment.CenterHorizontally))
+            PasswordTextField(modifier= Modifier
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally))
             Conditions()
