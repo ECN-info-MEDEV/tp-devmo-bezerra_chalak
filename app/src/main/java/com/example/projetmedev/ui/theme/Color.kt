@@ -13,6 +13,7 @@ val Bleue = Color(0xDEE9F5)
 object ColorPalette {
     val Bleue = Color(0xDE,0xe9,0xF5)
     val Jaune = Color(240, 232, 50)
+    val BleueFoncee = Color(134, 148, 153)
 
     // Ajoutez d'autres couleurs ici si nécessaire
 }
