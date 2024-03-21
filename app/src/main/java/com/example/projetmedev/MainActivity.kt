@@ -105,7 +105,7 @@ class MainActivity : ComponentActivity() {
 fun Logo(modifier: Modifier = Modifier){
     Image(
         modifier=modifier,
-        painter = painterResource(id = R.drawable.logo),
+        painter = painterResource(id = R.drawable.logom),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         alpha = 0.5F
