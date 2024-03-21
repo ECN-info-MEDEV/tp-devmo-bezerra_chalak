@@ -69,7 +69,7 @@ fun JoaForCareApp(
 
             }
             composable(route = JoaForCareScreen.Home.name) {
-
+            HomeScreen()
             }
 
         }

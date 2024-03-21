@@ -58,181 +58,13 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var emailInput by remember { mutableStateOf("") }
-                    var passwordInput by remember { mutableStateOf("") }
-                    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                        Logo(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
-                        Title(modifier= Modifier
-                            .background(ColorPalette.Bleue)
-                            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally)
-                            .fillMaxWidth())
-                        CompteCreation(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
-                        AdresseMail(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
-
-                        EmailTextField(
-                            email = emailInput,
-                            onValueChange = { emailInput = it},
-                            modifier= Modifier
-                                .padding(top = 16.dp, bottom = 16.dp)
-                                .align(Alignment.CenterHorizontally))
-                        MotDePass(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
-                        PasswordTextField(
-                            password = passwordInput,
-                            onValueChange = { passwordInput = it},
-                            modifier= Modifier
-                                .padding(top = 16.dp, bottom = 16.dp)
-                                .align(Alignment.CenterHorizontally))
-                        Conditions(modifier= Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
-                            .align(Alignment.CenterHorizontally))
-                    }
-
+                  JoaForCareApp()
                 }
             }
         }
     }
 }
-@Composable
-fun Logo(modifier: Modifier = Modifier){
-    Image(
-        modifier=modifier,
-        painter = painterResource(id = R.drawable.logom),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        alpha = 0.5F
-    )
-}
 
-@Composable
-fun CompteCreation(modifier: Modifier = Modifier) {
-    Text(
-        text = "Créer un compte",
-        modifier = modifier,
-        color=ColorPalette.Jaune,
-        style = TextStyle(fontWeight = FontWeight.Bold),
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun AdresseMail(modifier: Modifier = Modifier) {
-    Text(
-        text = "Votre adresse mail",
-        modifier = modifier,
-        style = TextStyle(fontWeight = FontWeight.Bold),
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun EmailTextField(
-    email: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier) {
-    OutlinedTextField(
-        value = email,
-        onValueChange = onValueChange,
-        singleLine = true,
-        shape = MaterialTheme.shapes.large,
-        label = { Text(text= "Digitez votre mail") },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.surface,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-            disabledContainerColor = MaterialTheme.colorScheme.surface,
-            focusedBorderColor = ColorPalette.Jaune,
-            unfocusedBorderColor = ColorPalette.Jaune,
-        )
-    )
-}
-
-@Composable
-fun PasswordTextField(
-    password: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier) {
-
-    OutlinedTextField(
-        value = password,
-        onValueChange = onValueChange,
-        singleLine = true,
-        shape = MaterialTheme.shapes.large,
-        label = { Text(text= "Digitez votre mot de passe") },
-        colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.surface,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-            disabledContainerColor = MaterialTheme.colorScheme.surface,
-            focusedBorderColor = ColorPalette.Jaune,
-            unfocusedBorderColor = ColorPalette.Jaune,
-        ),
-        visualTransformation = PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password)
-    )
-}
-
-@Composable
-fun MotDePass(modifier: Modifier = Modifier) {
-    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
-        Text(
-            text = "Créez un mot de pass",
-            modifier = modifier,
-            style = TextStyle(fontWeight = FontWeight.Bold),
-            textAlign = TextAlign.Center
-        )
-        Text(
-            text = "(Le mot de pass doit contenir au minimum 8 caractères)",
-            modifier = modifier,
-            textAlign = TextAlign.Center,
-            style=TextStyle(fontSize = TextUnit(12f, TextUnitType.Sp))
-        )
-
-    }
-
-}
-
-@Composable
-fun Conditions(modifier: Modifier = Modifier) {
-    var checked by remember { mutableStateOf(false) }
-    Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
-        Checkbox(
-            checked = checked,
-            onCheckedChange = { checked = it },
-            colors = CheckboxDefaults.colors(MaterialTheme.colorScheme.primary)
-        )
-        Text(
-            text = "J'ai lu et j'accepte les conditions d'utilisation et la politique de confidentialité",
-            modifier = modifier,
-            textAlign = TextAlign.Center,
-            style=TextStyle(fontSize = TextUnit(14f, TextUnitType.Sp))
-        )
-
-
-    }
-
-}
-
-
-@Composable
-fun CreerCompteButton (modifier: Modifier = Modifier){
-    Button(
-        colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-        onClick = { }
-    ) {
-        Text(
-            text = "Creer Compte",
-            fontSize = 18.sp
-        )
-    }
-
-}
 
 
 @Composable
@@ -252,43 +84,15 @@ fun Title(modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     ProjetMedevTheme {
         var emailInput by remember { mutableStateOf("") }
+        var passwordInput by remember { mutableStateOf("") }
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            Logo(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-            Title(modifier= Modifier
-                .background(ColorPalette.Bleue)
-                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth())
-            CompteCreation(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-            AdresseMail(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-            EmailTextField(
-                email = emailInput,
-                onValueChange = { emailInput = it},
-                modifier= Modifier
-                    .padding(top = 16.dp, bottom = 16.dp)
-                    .align(Alignment.CenterHorizontally))
-            MotDePass(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-            PasswordTextField(
-                password = emailInput,
-                onValueChange = { emailInput = it},
-                modifier= Modifier
-                    .padding(top = 16.dp, bottom = 16.dp)
-                    .align(Alignment.CenterHorizontally))
-            Conditions(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-            CreerCompteButton(modifier= Modifier
-                .padding(top = 16.dp, bottom = 16.dp)
-                .align(Alignment.CenterHorizontally))
-        }
+            LoginScreen( email = emailInput,
+                onValueChange = {passwordInput = it} ,
+                password = passwordInput,
 
+                modifier= Modifier
+                    .padding(top = 16.dp, bottom = 16.dp)
+                    .align(Alignment.CenterHorizontally))
+        }
     }
 }
