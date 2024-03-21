@@ -83,16 +83,6 @@ fun Title(modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     ProjetMedevTheme {
-        var emailInput by remember { mutableStateOf("") }
-        var passwordInput by remember { mutableStateOf("") }
-        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            LoginScreen( email = emailInput,
-                onValueChange = {passwordInput = it} ,
-                password = passwordInput,
-
-                modifier= Modifier
-                    .padding(top = 16.dp, bottom = 16.dp)
-                    .align(Alignment.CenterHorizontally))
-        }
+        JoaForCareApp()
     }
 }

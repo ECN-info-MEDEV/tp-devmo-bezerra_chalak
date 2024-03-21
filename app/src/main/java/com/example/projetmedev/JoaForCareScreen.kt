@@ -59,17 +59,38 @@ fun JoaForCareApp(
                 var passwordInput by remember { mutableStateOf("") }
                 Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                     LoginScreen( email = emailInput,
-                        onValueChange = {passwordInput = it} ,
-                        password = passwordInput,
-                        onNextButtonClicked = { navController.navigate(JoaForCareScreen.Home.name) }
-                        ,modifier= Modifier
+                        onValueChange = {emailInput = it} ,
+                        modifier= Modifier
                             .padding(top = 16.dp, bottom = 16.dp)
                             .align(Alignment.CenterHorizontally))
-                }
 
+                    PasswordandButton(modifier= Modifier
+                        .padding(top = 16.dp, bottom = 16.dp)
+                        .align(Alignment.CenterHorizontally),
+                        onValueChange = {passwordInput = it} ,
+                        password = passwordInput)
+
+                    LoginButton(
+                        modifier= Modifier
+                            .padding(top = 16.dp, bottom = 16.dp)
+                            .align(Alignment.CenterHorizontally),
+                        email = emailInput,
+                        password = passwordInput,
+                        onNextButtonClicked = { navController.navigate(JoaForCareScreen.Home.name)}
+
+                    )
+                }
             }
             composable(route = JoaForCareScreen.Home.name) {
-            HomeScreen()
+            HomeScreen(
+                modifier = Modifier,
+                onNextButtonClicked = { navController.navigate(JoaForCareScreen.Activity.name) }
+
+            )
+            }
+            composable(route = JoaForCareScreen.Activity.name) {
+                ActivityScreen(modifier = Modifier,
+                    onNextButtonClicked = { navController.navigate(JoaForCareScreen.Home.name) } )
             }
 
         }
@@ -80,5 +101,6 @@ fun JoaForCareApp(
 
 enum class JoaForCareScreen(@StringRes val title: Int) {
     Login(title = R.string.login),
-    Home(title = R.string.home)
+    Home(title = R.string.home),
+    Activity(title = R.string.activity)
 }

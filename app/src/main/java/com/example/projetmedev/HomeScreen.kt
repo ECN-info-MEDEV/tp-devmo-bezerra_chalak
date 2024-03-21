@@ -28,7 +28,10 @@ import androidx.compose.ui.unit.sp
 import com.example.projetmedev.ui.theme.ColorPalette
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onNextButtonClicked: () -> Unit = {},
+    modifier: Modifier
+) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -66,13 +69,14 @@ fun HomeScreen() {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier= Modifier
-                .background(ColorPalette.BleueFoncee).fillMaxWidth()
+                .background(ColorPalette.BleueFoncee)
+                .fillMaxWidth()
 
         ){
             Button(modifier= Modifier
                 .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 10.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-                onClick = { }
+                onClick = { onNextButtonClicked() }
             ) {
                 Text(
                     text = "   Me distraire   ",
@@ -83,7 +87,7 @@ fun HomeScreen() {
             Button(modifier= Modifier
                 .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 10.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-                onClick = { }
+                onClick = { onNextButtonClicked() }
             ) {
                 Text(
                     text = " Etre apaisé(e) ",
@@ -94,7 +98,7 @@ fun HomeScreen() {
             Button(modifier= Modifier
                 .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 10.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-                onClick = { }
+                onClick = { onNextButtonClicked()  }
             ) {
                 Text(
                     text = "    M'instruire    ",
@@ -105,7 +109,7 @@ fun HomeScreen() {
             Button(modifier= Modifier
                 .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-                onClick = { }
+                onClick = { onNextButtonClicked() }
             ) {
                 Text(
                     text = "Etre soutenu(e)",
@@ -121,7 +125,7 @@ fun HomeScreen() {
     @Preview(showBackground = true, showSystemUi = true)
     @Composable
     fun HomeScreenPreview(){
-        HomeScreen()
+        HomeScreen(modifier = Modifier)
     }
 
 

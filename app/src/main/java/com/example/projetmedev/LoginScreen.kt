@@ -1,6 +1,8 @@
 
 package com.example.projetmedev
 
+import android.app.AlertDialog
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +12,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -37,17 +43,23 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.projetmedev.data.emailPasswordMap
 import com.example.projetmedev.ui.theme.ColorPalette
+import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
+var showError by mutableStateOf(false)
+var checked by mutableStateOf(false)
 @Composable
 
 fun LoginScreen(modifier: Modifier = Modifier,
                 email: String,
-                onNextButtonClicked: () -> Unit = {},
                 onValueChange: (String) -> Unit,
-                password: String){
+                )
+
+{
+
     Image(
-        modifier=modifier,
+        modifier = modifier,
         painter = painterResource(id = R.drawable.logom),
         contentDescription = null,
         contentScale = ContentScale.Crop,
@@ -71,7 +83,7 @@ fun LoginScreen(modifier: Modifier = Modifier,
     Text(
         text = "Créer un compte",
         modifier = modifier,
-        color= ColorPalette.Jaune,
+        color = ColorPalette.Jaune,
         style = TextStyle(fontWeight = FontWeight.Bold),
         textAlign = TextAlign.Center
     )
@@ -86,7 +98,7 @@ fun LoginScreen(modifier: Modifier = Modifier,
         onValueChange = onValueChange,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
-        label = { Text(text= "Digitez votre mail") },
+        label = { Text(text = "Digitez votre mail") },
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = MaterialTheme.colorScheme.surface,
             unfocusedContainerColor = MaterialTheme.colorScheme.surface,
@@ -95,7 +107,10 @@ fun LoginScreen(modifier: Modifier = Modifier,
             unfocusedBorderColor = ColorPalette.Jaune,
         )
     )
-    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
             text = "Créez un mot de passe",
             modifier = modifier,
@@ -106,27 +121,38 @@ fun LoginScreen(modifier: Modifier = Modifier,
             text = "(Le mot de pass doit contenir au minimum 8 caractères)",
             modifier = modifier,
             textAlign = TextAlign.Center,
-            style= TextStyle(fontSize = TextUnit(12f, TextUnitType.Sp))
-        )
-        OutlinedTextField(
-            value = password,
-            onValueChange = onValueChange,
-            singleLine = true,
-            shape = MaterialTheme.shapes.large,
-            label = { Text(text= "Digitez votre mot de passe") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                disabledContainerColor = MaterialTheme.colorScheme.surface,
-                focusedBorderColor = ColorPalette.Jaune,
-                unfocusedBorderColor = ColorPalette.Jaune,
-            ),
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password)
+            style = TextStyle(fontSize = TextUnit(12f, TextUnitType.Sp))
         )
     }
+    if (showError) {
+        Text(
+            text = "Informations d'identification incorrectes. Veuillez vérifier et réessayer.",
+            fontSize = 14.sp,
+            color = Color.Red,
+            modifier = Modifier.padding(top = 8.dp)
+        )
+    }
+}
 
-    var checked by remember { mutableStateOf(false) }
+
+
+
+@Composable
+fun PasswordandButton(
+    modifier: Modifier,
+    password: String,
+    onValueChange: (String) -> Unit,
+
+){
+    OutlinedTextField(value = password, onValueChange = onValueChange, singleLine = true, shape = MaterialTheme.shapes.large, label = { Text(text = "Digitez votre mot de passe") }, colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surface,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+            disabledContainerColor = MaterialTheme.colorScheme.surface,
+            focusedBorderColor = ColorPalette.Jaune,
+            unfocusedBorderColor = ColorPalette.Jaune,
+        ), visualTransformation = PasswordVisualTransformation(), keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Password))
+
+
     Row(horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically){
         Checkbox(
             checked = checked,
@@ -141,13 +167,77 @@ fun LoginScreen(modifier: Modifier = Modifier,
         )
     }
 
+
+}
+
+
+@Composable
+fun LoginButton(
+    onNextButtonClicked: () -> Unit,
+    modifier: Modifier,
+    email: String,
+    password: String,
+
+){
     Button(
         colors = ButtonDefaults.buttonColors(containerColor = ColorPalette.Jaune),
-        onClick = { onNextButtonClicked() }
+        onClick = {
+
+            if (CheckLoginAndPassword(email, password)) {
+                onNextButtonClicked()
+            } else {
+                showError = true;
+            }
+        },
+        enabled = checked
     ) {
         Text(
-            text = "Creer Compte",
+            text = "Login",
             fontSize = 18.sp
         )
     }
 }
+
+@Composable
+fun messageAlert(){
+//    Text(
+//        text = "Informations d'identification incorrectes. \nVeuillez vérifier et réessayer.",
+//        fontSize = 14.sp,
+//        textAlign = TextAlign.Center,
+//        color = Color.Red,
+//        modifier = Modifier
+//            .padding(horizontal = 16.dp)
+//            .wrapContentWidth(Alignment.CenterHorizontally)
+//            .padding(top = 8.dp)
+//    )
+
+    val alertDialogBuilder = AlertDialog.Builder()
+
+    // Configuração do AlertDialog
+    alertDialogBuilder.apply {
+        setTitle("Título do Alerta")
+        setMessage("Mensagem do Alerta")
+        setPositiveButton("OK") { dialog, which ->
+            // Ação quando o botão OK é clicado
+            dialog.dismiss() // Fechar o AlertDialog
+        }
+        setNegativeButton("Cancelar") { dialog, which ->
+            // Ação quando o botão Cancelar é clicado
+            dialog.dismiss() // Fechar o AlertDialog
+        }
+    }
+
+}
+
+
+
+
+fun CheckLoginAndPassword(email: String, password: String): Boolean{
+    val storedPassword = emailPasswordMap[email]
+    return storedPassword == password
+}
+
+
+
+
+
