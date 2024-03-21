@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -45,7 +46,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.projetmedev.data.emailPasswordMap
 import com.example.projetmedev.ui.theme.ColorPalette
-import kotlin.coroutines.jvm.internal.CompletedContinuation.context
 
 var showError by mutableStateOf(false)
 var checked by mutableStateOf(false)
@@ -126,10 +126,14 @@ fun LoginScreen(modifier: Modifier = Modifier,
     }
     if (showError) {
         Text(
-            text = "Informations d'identification incorrectes. Veuillez vérifier et réessayer.",
+            text = "Informations d'identification incorrectes. \nVeuillez vérifier et réessayer.",
             fontSize = 14.sp,
+            textAlign = TextAlign.Center,
             color = Color.Red,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .padding(top = 8.dp)
         )
     }
 }
@@ -198,36 +202,7 @@ fun LoginButton(
     }
 }
 
-@Composable
-fun messageAlert(){
-//    Text(
-//        text = "Informations d'identification incorrectes. \nVeuillez vérifier et réessayer.",
-//        fontSize = 14.sp,
-//        textAlign = TextAlign.Center,
-//        color = Color.Red,
-//        modifier = Modifier
-//            .padding(horizontal = 16.dp)
-//            .wrapContentWidth(Alignment.CenterHorizontally)
-//            .padding(top = 8.dp)
-//    )
 
-    val alertDialogBuilder = AlertDialog.Builder()
-
-    // Configuração do AlertDialog
-    alertDialogBuilder.apply {
-        setTitle("Título do Alerta")
-        setMessage("Mensagem do Alerta")
-        setPositiveButton("OK") { dialog, which ->
-            // Ação quando o botão OK é clicado
-            dialog.dismiss() // Fechar o AlertDialog
-        }
-        setNegativeButton("Cancelar") { dialog, which ->
-            // Ação quando o botão Cancelar é clicado
-            dialog.dismiss() // Fechar o AlertDialog
-        }
-    }
-
-}
 
 
 
